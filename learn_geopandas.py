@@ -6,20 +6,21 @@ random_points_csv = "data/random_points.csv"
 random_points_shapefile = "data/random_points_shapefile/POINT.shp"
 random_points_geojson = "data/random_points.geojson"
 
-points = [random_points_csv, random_points_shapefile, random_points_geojson]
-
-# Geopandas can handle a wide range of datatypes. In
-# this demo, we'll use a Shapefile, geojson, and a CSV.
-# For our scenario, we're interested in which points 
-# intersect our polygon.
-
 area_of_interest = gpd.read_file(estes_park)
 
-intersections = []
+# Let's take a look at how many points intersect from our geojson file
+points_data = gpd.read_file(random_points_geojson)
+intersecting_points = points_data.overlay(area_of_interest, how='intersection')
+print(intersecting_points)
 
-for dataset in points:
-    points_data = gpd.read_file(dataset)
-    intersecting_points = area_of_interest.geometry.intersects(points_data.geometry)
-    intersections.append(intersecting_points)
+# Looks like five points intersect our polygon! How about the shapefile?
+points_data = gpd.read_file(random_points_shapefile)
+intersecting_points = points_data.overlay(area_of_interest, how='intersection')
+print(intersecting_points)
 
-print(intersections)
+# Same thing! Which makes sense becaue they are the exact same dataset.
+
+# What about the CSV?
+points_data = gpd.read_file(random_points_csv)
+intersecting_points = points_data.overlay(area_of_interest, how='intersection')
+print(intersecting_points)
