@@ -1,6 +1,8 @@
 # demonstrate_geopandas
 Code to support my Medium Post, "Python For Spatial Analysis: Learning GeoPandas"
 
+https://medium.com/@tanner.overcash/python-for-spatial-analysis-a0537fbd68d2
+
 ## SETUP ##
 Let's set up our environment first. I prefer to use pyenv, but you can use whatever environment manager you'd like.
 
